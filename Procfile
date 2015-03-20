@@ -1,0 +1,1 @@
+web: gunicorn tasty.wsgi --log-file -
