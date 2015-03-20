@@ -4,7 +4,7 @@ Se pide que se implemente un api rest que retorne true si dos usuarios son amigo
 
 Se debe implementar usando Django/Tastypie
 
-### <h3>Extra</h3> ###
+### Extra ###
 
 Ya entiendes la idea, ahora opcionalmente implementa cualquier cosa que se te ocurra.
 
