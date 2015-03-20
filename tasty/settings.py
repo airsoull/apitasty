@@ -68,7 +68,7 @@ TEMPLATE_CONTEXT_PROCESSORS = (
 
 SOCIAL_AUTH_FACEBOOK_KEY = os.getenv('SOCIAL_AUTH_FACEBOOK_KEY')
 SOCIAL_AUTH_FACEBOOK_SECRET = os.getenv('SOCIAL_AUTH_FACEBOOK_SECRET')
-FACEBOOK_EXTENDED_PERMISSIONS = ['email', 'user_location', 'publish_actions', 'user_birthday', 'user_interests', 'user_hometown']
+SOCIAL_AUTH_FACEBOOK_SCOPE = ['email']
 
 LANGUAGE_CODE = os.getenv('LANGUAGE_CODE', 'es-CL')
 TIME_ZONE = os.getenv('TIME_ZONE', 'America/Santiago')
