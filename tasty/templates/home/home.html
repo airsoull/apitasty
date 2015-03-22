@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% load i18n %}
+
+{% block content %}
+	<div class="alert alert-warning" role="alert"><span class="glyphicon glyphicon-warning-sign" aria-hidden="true"></span>&nbsp;&nbsp;{% trans "Comparará amigos que ya hayan usado anteriormente la aplicación" %}</div>
+	<br>
+	{% trans "Para comparar amigos ingrese con su Facebook" %} 
+	<br><br>
+	<a href="{% url 'social:begin' 'facebook' %}"><img src="{% static 'img/facebook_login.png' %}" alt="facebook login"></a>
+{% endblock content %}

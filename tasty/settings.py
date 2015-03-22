@@ -27,9 +27,13 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    'api',
+    'tasty',
+
     'social.apps.django_app.default',
     'storages',
     'tastypie',
+    'bootstrapform',
 )
 
 MIDDLEWARE_CLASSES = (
