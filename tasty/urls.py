@@ -4,7 +4,7 @@ from django.contrib import admin
 urlpatterns = patterns('',
 	url(r'^', include('home.urls')),
 	url('', include('social.apps.django_app.urls', namespace='social')),
-	url(r'^accounts/logout/$', 'django.contrib.auth.views.logout', name='auth_logout'),
+	url(r'^accounts/logout/$', 'django.contrib.auth.views.logout', {'next_page': '/'}, name='auth_logout'),
 	url(r'^api/', include('api.urls')),
     url(r'^admin/', include(admin.site.urls)),
 )
