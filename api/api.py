@@ -50,7 +50,7 @@ class UserResource(Resource):
         friends = graph.get_connections("me", "friends")
 
         value = False
-        print uid_friend
+        print 'uid:', uid_friend
         print '*'*10
         for friend in friends['data']:
             print friend['id']
