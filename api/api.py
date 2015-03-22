@@ -29,7 +29,7 @@ class UserResource(Resource):
         resource_name = 'facebook/friend'
         object_class = RiakObject
         
-    def obj_get_list(self, bundle, **kwargs):
+    def get_object_list(self, request):
         email = self.request.GET.get('email')
         email_friend = self.request.GET.get('email')
         
@@ -50,7 +50,10 @@ class UserResource(Resource):
         friends = graph.get_connections("me", "friends")
 
         value = False
+        print uid_friend
+        print '*'*10
         for friend in friends['data']:
+            print friend['id']
             if str(friend['id']) == str(uid_friend):
                 value = True
                 break
@@ -60,8 +63,8 @@ class UserResource(Resource):
         result.append(RiakObject({'value': value}))
         return result
 
-    # def obj_get_list(self, bundle, **kwargs):
-    #     return self.get_object_list(bundle.request)
+    def obj_get_list(self, bundle, **kwargs):
+        return self.get_object_list(bundle.request)
 
     # def dispatch(self, request_type, request, **kwargs):
     #     # self.email = kwargs.pop('email')
