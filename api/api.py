@@ -29,9 +29,9 @@ class UserResource(Resource):
         resource_name = 'facebook/friend'
         object_class = RiakObject
         
-    def obj_get_list(self, request):
-        email = request.GET.get('email')
-        email_friend = request.GET.get('email')
+    def obj_get_list(self, bundle, **kwargs):
+        email = self.request.GET.get('email')
+        email_friend = self.request.GET.get('email')
         
         try:
             user_friend = User.objects.get(email=email_friend)
