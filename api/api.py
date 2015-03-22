@@ -29,9 +29,9 @@ class UserResource(Resource):
         resource_name = 'facebook/friend'
         object_class = RiakObject
         
-    def get_object_list(self, request):
-        email = request.GET.get('email')
-        email_friend = request.GET.get('email_friend')
+    def obj_get_list(self, bundle, **kwargs):
+        email = bundle.request.GET.get('email')
+        email_friend = bundle.request.GET.get('email_friend')
         
         try:
             user_friend = User.objects.get(email=email_friend)
@@ -59,8 +59,8 @@ class UserResource(Resource):
         result.append(RiakObject({'value': value}))
         return result
 
-    def obj_get_list(self, bundle, **kwargs):
-        return self.get_object_list(bundle.request)
+    # def obj_get_list(self, bundle, **kwargs):
+    #     return self.get_object_list(bundle.request)
 
     def alter_list_data_to_serialize(self, request, data): 
         if isinstance(data, dict): 
