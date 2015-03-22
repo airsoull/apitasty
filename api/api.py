@@ -62,7 +62,7 @@ class UserResource(Resource):
                 'value': value,
             }
         ))
-        return posts
+        # return posts
 
     def obj_get_list(self, bundle, **kwargs):
         return self.get_object_list(bundle.request)
