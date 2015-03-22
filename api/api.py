@@ -55,7 +55,7 @@ class UserResource(Resource):
                 value = True
                 break;
 
-
+        print value
         posts = []
         posts.append(RiakObject(
             {
