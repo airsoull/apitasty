@@ -17,6 +17,7 @@ TEMPLATE_DEBUG = os.getenv('TEMPLATE_DEBUG', str(DEBUG)) == 'True'
 ALLOWED_HOSTS = (os.getenv('ALLOWED_HOST', '*'),)
 SITE_ID = os.getenv('SITE_ID', int(1))
 
+AUTH_USER_MODEL = 'auth.User'
 
 INSTALLED_APPS = (
     'django.contrib.admin',
@@ -28,6 +29,7 @@ INSTALLED_APPS = (
 
     'social.apps.django_app.default',
     'storages',
+    'tastypie',
 )
 
 MIDDLEWARE_CLASSES = (
