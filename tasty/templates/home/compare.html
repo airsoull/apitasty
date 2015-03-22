@@ -24,6 +24,8 @@
 	</form>
 	<br><br>
 	<div id="response" class="alert alert-info"></div>
+
+	<a href="{% url 'auth_logout' %}">{% trans "Logout" %}</a>
 	
 	{% addtoblock 'js' %}
 		<script src="{% static 'js/find_friend.js' %}"></script>

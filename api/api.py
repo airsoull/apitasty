@@ -29,9 +29,9 @@ class UserResource(Resource):
         resource_name = 'facebook/friend'
         object_class = RiakObject
         
-    def obj_get_list(self, bundle, **kwargs):
-        email = bundle.request.GET.get('email')
-        email_friend = bundle.request.GET.get('email_friend')
+    def get_object_list(self, request):
+        email = request.GET.get('email')
+        email_friend = request.GET.get('email_friend')
         
         try:
             user_friend = User.objects.get(email=email_friend)
@@ -59,29 +59,11 @@ class UserResource(Resource):
         result.append(RiakObject({'value': value}))
         return result
 
-    # def obj_get_list(self, bundle, **kwargs):
-    #     return self.get_object_list(bundle.request)
+    def obj_get_list(self, bundle, **kwargs):
+        return self.get_object_list(bundle.request)
 
     def alter_list_data_to_serialize(self, request, data): 
         if isinstance(data, dict): 
             if 'meta' in data: 
                 del(data['meta']) 
                 return data
-
-# class UserResource2(ModelResource):
-
-#     class Meta:
-#         queryset = User.objects.all()
-#         resource_name = 'user'
-#         authorization= Authorization()
-#         # always_return_data = True
-
-#     def dehydrate(self, bundle):
-#         bundle.data['value'] = True
-#         return bundle
-
-#     def dispatch(self, request_type, request, **kwargs):
-#         self.email = kwargs.pop('email')
-#         self.friend_email = kwargs.pop('friend_email')
-#         # kwargs['user'] = get_object_or_404(User, email=email)
-#         return super(UserResource, self).dispatch(request_type, request, **kwargs)

@@ -13,7 +13,7 @@ function even(e){
 
     $.get($url, function(data, textStatus, xhr){
     }).success(function(data){
-      console.log(data);
+      $data = data;
     }).fail(function(data, textStatus, xhr){
       $response.html('Email de amigo no registrado');
     });
