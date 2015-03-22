@@ -3,7 +3,6 @@ import facebook
 from django.contrib.auth.models import User
 from django.http import Http404
 
-from tastypie.authorization import Authorization
 from tastypie.resources import Resource
 from tastypie import fields
 
@@ -24,17 +23,16 @@ class RiakObject(object):
         return self._data
 
 class UserResource(Resource):
-    value = fields.BooleanField()
+    value = fields.BooleanField(default=False)
 
     class Meta:
         resource_name = 'facebook/friend'
         object_class = RiakObject
-        # authorization= Authorization()
-
+        
     def get_object_list(self, request):
         email = request.GET.get('email')
         email_friend = request.GET.get('email')
-
+        
         value = False
         try:
             user = User.objects.get(email=email_friend)
@@ -48,8 +46,8 @@ class UserResource(Resource):
         except User.DoesNotExist:
             raise Http404
 
-
-        graph = facebook.GraphAPI(access_token=extra_data_user['access_token'])
+        access_token = extra_data_user['access_token']
+        graph = facebook.GraphAPI(access_token=access_token)
         friends = graph.get_connections("me", "friends")
 
         for friend in friends['data']:
