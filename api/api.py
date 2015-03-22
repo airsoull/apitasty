@@ -23,7 +23,7 @@ class RiakObject(object):
         return self._data
 
 class UserResource(Resource):
-    value = fields.BooleanField(default=False, editable=True)
+    value = fields.BooleanField(default=False)
 
     class Meta:
         resource_name = 'facebook/friend'
