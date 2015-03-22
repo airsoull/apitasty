@@ -31,7 +31,7 @@ class UserResource(Resource):
         
     def get_object_list(self, request):
         email = request.GET.get('email')
-        email_friend = request.GET.get('email')
+        email_friend = request.GET.get('email_friend')
         
         try:
             user_friend = User.objects.get(email=email_friend)
