@@ -23,7 +23,7 @@ class RiakObject(object):
         return self._data
 
 class UserResource(Resource):
-    # value = fields.BooleanField(default=False)
+    value = fields.BooleanField(default=False, editable=True)
 
     class Meta:
         resource_name = 'facebook/friend'
@@ -56,13 +56,9 @@ class UserResource(Resource):
                 break;
 
         print value
-        posts = []
-        posts.append(RiakObject(
-            {
-                'value': value,
-            }
-        ))
-        # return posts
+        result = []
+        result.append(RiakObject({'value': value}))
+        return result
 
     def obj_get_list(self, bundle, **kwargs):
         return self.get_object_list(bundle.request)
