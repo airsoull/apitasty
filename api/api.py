@@ -29,7 +29,7 @@ class UserResource(Resource):
         resource_name = 'facebook/friend'
         object_class = RiakObject
         
-    def get_object_list(self, request):
+    def obj_get_list(self, request):
         email = request.GET.get('email')
         email_friend = request.GET.get('email')
         
@@ -60,8 +60,8 @@ class UserResource(Resource):
         result.append(RiakObject({'value': value}))
         return result
 
-    def obj_get_list(self, bundle, **kwargs):
-        return self.get_object_list(bundle.request)
+    # def obj_get_list(self, bundle, **kwargs):
+    #     return self.get_object_list(bundle.request)
 
     # def dispatch(self, request_type, request, **kwargs):
     #     # self.email = kwargs.pop('email')
