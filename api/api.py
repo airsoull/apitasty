@@ -30,8 +30,8 @@ class UserResource(Resource):
         object_class = RiakObject
         
     def get_object_list(self, request):
-        email = self.request.GET.get('email')
-        email_friend = self.request.GET.get('email')
+        email = request.GET.get('email')
+        email_friend = request.GET.get('email')
         
         try:
             user_friend = User.objects.get(email=email_friend)
