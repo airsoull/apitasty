@@ -23,7 +23,7 @@ class RiakObject(object):
         return self._data
 
 class UserResource(Resource):
-    value = fields.BooleanField(default=False)
+    # value = fields.BooleanField(default=False)
 
     class Meta:
         resource_name = 'facebook/friend'
@@ -49,7 +49,7 @@ class UserResource(Resource):
         graph = facebook.GraphAPI(access_token=access_token)
         friends = graph.get_connections("me", "friends")
 
-        value = True
+        value = False
         for friend in friends['data']:
             if str(friend['id']) == str(uid_friend):
                 value = True
