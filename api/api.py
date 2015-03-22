@@ -35,6 +35,7 @@ class UserResource(Resource):
         email = request.GET.get('email')
         email_friend = request.GET.get('email')
 
+        value = False
         try:
             user = User.objects.get(email=email_friend)
             uid_friend = user.social_auth.filter(provider='facebook').latest('pk').uid       
@@ -42,8 +43,8 @@ class UserResource(Resource):
             raise Http404
 
         try:
-            user = User.objects.get(email=email)
-            extra_data_user = user.social_auth.filter(provider='facebook').latest('pk').extra_data
+            user_friend = User.objects.get(email=email)
+            extra_data_user = user_friend.social_auth.filter(provider='facebook').latest('pk').extra_data
         except User.DoesNotExist:
             raise Http404
 
