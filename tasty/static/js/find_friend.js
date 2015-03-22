@@ -13,7 +13,14 @@ function even(e){
 
     $.get($url, function(data, textStatus, xhr){
     }).success(function(data){
-      $data = data;
+      $value = data['objects'][0]['value'];
+
+      if ($value){
+        $response.html('Son amigos en Facebook! =)');
+      }else{
+        $response.html('NO Son amigos en Facebook =(');
+      }
+
     }).fail(function(data, textStatus, xhr){
       $response.html('Email de amigo no registrado');
     });
