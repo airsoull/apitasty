@@ -52,7 +52,7 @@ class UserResource(Resource):
         friends = graph.get_connections("me", "friends")
 
         for friend in friends['data']:
-            if friend['id'] == uid_friend:
+            if str(friend['id']) == str(uid_friend):
                 value = True
                 break;
 
