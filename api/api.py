@@ -49,7 +49,7 @@ class UserResource(Resource):
         graph = facebook.GraphAPI(access_token=access_token)
         friends = graph.get_connections("me", "friends")
 
-        value = False
+        value = True
         for friend in friends['data']:
             if str(friend['id']) == str(uid_friend):
                 value = True
