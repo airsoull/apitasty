@@ -22,6 +22,8 @@
 		<button type="submit" class="btn btn-primary" id="search">{% trans "Buscar Amigo" %}</button>
 	</div>
 	</form>
+
+	<div id="response" class="alert alert-info"></div>
 	
 	{% addtoblock 'js' %}
 		<script src="{% static 'js/find_friend.js' %}"></script>
