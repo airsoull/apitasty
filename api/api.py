@@ -24,31 +24,43 @@ class RiakObject(object):
         return self._data
 
 class UserResource(Resource):
-    value = fields.BooleanField(default=False)
+    value = fields.BooleanField()
 
     class Meta:
         resource_name = 'facebook/friend'
         object_class = RiakObject
-        authorization= Authorization()
+        # authorization= Authorization()
 
     def get_object_list(self, request):
-        value = False
+        email = request.GET.get('email')
+        email_friend = request.GET.get('email')
 
         try:
-            uid = User.objects.get(email=self.email).social_auth.filter(provider='facebook')[0].uid
+            user = User.objects.get(email=email_friend)
+            uid_friend = user.social_auth.filter(provider='facebook').latest('pk').uid       
         except User.DoesNotExist:
             raise Http404
 
-        graph = facebook.GraphAPI(access_token='your_token', version='2.2')
+        try:
+            user = User.objects.get(email=email)
+            extra_data_user = user.social_auth.filter(provider='facebook').latest('pk').extra_data
+        except User.DoesNotExist:
+            raise Http404
+
+
+        graph = facebook.GraphAPI(access_token=extra_data_user['access_token'])
         friends = graph.get_connections("me", "friends")
 
-        print friends
+        for friend in friends['data']:
+            if friend['id'] == uid_friend:
+                value = True
+                break;
+
+
         posts = []
         posts.append(RiakObject(
             {
-                'title': 'Test Blog Title 1',
-                'content': 'Blog Content',
-                'author_name': 'User 1'
+                'value': value,
             }
         ))
         return posts
@@ -56,9 +68,10 @@ class UserResource(Resource):
     def obj_get_list(self, bundle, **kwargs):
         return self.get_object_list(bundle.request)
 
-    def dispatch(self, request_type, request, **kwargs):
-        self.email = kwargs.pop('email')
-        self.friend_email = kwargs.pop('friend_email')
+    # def dispatch(self, request_type, request, **kwargs):
+    #     # self.email = kwargs.pop('email')
+    #     # self.friend_email = kwargs.pop('friend_email')
+    #     pass
 
     def alter_list_data_to_serialize(self, request, data): 
         if isinstance(data, dict): 
