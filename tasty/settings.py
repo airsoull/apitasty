@@ -75,7 +75,7 @@ TEMPLATE_CONTEXT_PROCESSORS = (
 
 SOCIAL_AUTH_FACEBOOK_KEY = os.getenv('SOCIAL_AUTH_FACEBOOK_KEY')
 SOCIAL_AUTH_FACEBOOK_SECRET = os.getenv('SOCIAL_AUTH_FACEBOOK_SECRET')
-SOCIAL_AUTH_FACEBOOK_SCOPE = ['email', 'user_friends',]
+SOCIAL_AUTH_FACEBOOK_SCOPE = ['email', 'user_friends', 'user_photos',]
 
 LANGUAGE_CODE = os.getenv('LANGUAGE_CODE', 'es-CL')
 TIME_ZONE = os.getenv('TIME_ZONE', 'America/Santiago')
@@ -106,3 +106,5 @@ STATICFILES_STORAGE = os.getenv('STATICFILES_STORAGE', 'django.contrib.staticfil
 
 AWS_ACCESS_KEY_ID = os.getenv('AWS_ACCESS_KEY_ID')
 AWS_SECRET_ACCESS_KEY = os.getenv('AWS_SECRET_ACCESS_KEY')
+
+SOCIAL_AUTH_LOGIN_REDIRECT_URL = '/compare/'
