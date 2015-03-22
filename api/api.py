@@ -53,7 +53,7 @@ class UserResource(Resource):
         for friend in friends['data']:
             if str(friend['id']) == str(uid_friend):
                 value = True
-                break;
+                break
 
         print value
         result = []
