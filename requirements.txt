@@ -13,3 +13,6 @@ django-storages==1.1.8
 boto==2.36.0
 facebook-sdk==0.4.0
 django-bootstrap-form==3.2
+django-extensions==1.5.1
+ipython==3.0.0
+django-sekizai==0.8.1

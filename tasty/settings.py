@@ -34,6 +34,8 @@ INSTALLED_APPS = (
     'storages',
     'tastypie',
     'bootstrapform',
+    'django_extensions',
+    'sekizai',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -71,6 +73,7 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     "django.contrib.messages.context_processors.messages",
     'social.apps.django_app.context_processors.backends',
     'social.apps.django_app.context_processors.login_redirect',
+    'sekizai.context_processors.sekizai',
 )
 
 SOCIAL_AUTH_FACEBOOK_KEY = os.getenv('SOCIAL_AUTH_FACEBOOK_KEY')
@@ -108,3 +111,5 @@ AWS_ACCESS_KEY_ID = os.getenv('AWS_ACCESS_KEY_ID')
 AWS_SECRET_ACCESS_KEY = os.getenv('AWS_SECRET_ACCESS_KEY')
 
 SOCIAL_AUTH_LOGIN_REDIRECT_URL = '/compare/'
+
+LOGIN_URL = '/'

@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% load sekizai_tags %}
+{% load i18n %}
+{% load staticfiles %}
+
+{% block title %}
+	{% trans "Comparar amigos" %}
+{% endblock title %}
+
+{% block content %}
+	<div class="row">
+		Bienvenido {{ user.get_full_name }}
+	</div>
+	<br>
+	<form method="get">
+	<div class="form-inline">
+		<div class="input-group">
+			<div class="input-group-addon">@</div>
+			<input type="email" required class="form-control" id="email_friend" placeholder="{% trans "Ingrese email de amigo" %}">
+			<input type="hidden" id="email" value="{{ user.email }}">
+		</div>
+		<button type="submit" class="btn btn-primary" id="search">{% trans "Buscar Amigo" %}</button>
+	</div>
+	</form>
+	
+	{% addtoblock 'js' %}
+		<script src="{% static 'js/find_friend.js' %}"></script>
+	{% endaddtoblock %}
+{% endblock content %}
