@@ -22,8 +22,8 @@ class UserResourceTest(ResourceTestCase):
 		self.user_friend = User.objects.get(pk=self.user_friend.pk)
 		uid = '10206250137793732'
 		extra_data = '{"expires": "5183999", "id": "10206250137793732", "access_token": "CAAH4lDiSMqkBAJ4rz1HutjMkUv7gg3Blc3CR7caKWPTXwWQwoVvaleg4CWnJopnxRwoXl83JkbOZACRNeenEasyIrHOKKwQTieL9s9SaxZCbEqRZBwsC9StEn686dgshAqqtIly1ojrZBR7PSxXb9klwm0qg09qSqal98ZCZBkyGpdihlSzjfPqf7MpYR2IgejdEK9ScDzQiyeKpyQQ6ZBS"}'
-		social_auth = UserSocialAuth(user=self.user_friend, provider=provider, uid=uid, extra_data=extra_data)
-		social_auth.save()
+		self.social_auth = UserSocialAuth(user=self.user_friend, provider=provider, uid=uid, extra_data=extra_data)
+		self.social_auth.save()
 
 		self.user_no_friend = User.objects.create_user(email='no_friend@example.net', password='password', username="no_friend")
 		self.user_no_friend = User.objects.get(pk=self.user_no_friend.pk)
@@ -71,3 +71,8 @@ class UserResourceTest(ResourceTestCase):
 		expected = {'objects': [{'resource_uri': '', 'value': False}]}
 
 		self.assertEqual(expected, json.loads(content))
+
+	def test_get_with_both_parameter_friend_no_facebook(self):
+		self.social_auth.delete()
+		response = self.client.get(self.url, {'email': self.user.email, 'email_friend': self.user_friend.email}, format='json')
+		self.assertEqual(404, response.status_code)
