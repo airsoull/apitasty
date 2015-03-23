@@ -28,6 +28,7 @@ class UserResource(Resource):
     class Meta:
         resource_name = 'facebook/friend'
         object_class = RiakObject
+        allowed_methods = ['get',]
         
     def get_object_list(self, request):
         email = request.GET.get('email')
