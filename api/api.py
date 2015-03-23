@@ -3,6 +3,7 @@ import facebook
 from django.contrib.auth.models import User
 from django.http import Http404
 
+from social.apps.django_app.default.models import UserSocialAuth
 from tastypie.resources import Resource
 from tastypie import fields
 
@@ -36,14 +37,14 @@ class UserResource(Resource):
         
         try:
             user_friend = User.objects.get(email=email_friend)
-            uid_friend = user_friend.social_auth.filter(provider='facebook').latest('pk').uid       
+            user = User.objects.get(email=email)      
         except User.DoesNotExist:
             raise Http404
 
         try:
-            user = User.objects.get(email=email)
+            uid_friend = user_friend.social_auth.filter(provider='facebook').latest('pk').uid
             extra_data_user = user.social_auth.filter(provider='facebook').latest('pk').extra_data
-        except User.DoesNotExist:
+        except UserSocialAuth.DoesNotExist:
             raise Http404
 
         access_token = extra_data_user['access_token']
