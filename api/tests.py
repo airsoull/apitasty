@@ -6,6 +6,10 @@ class UserResourceTest(ResourceTestCase):
 	def setUp(self):
 		self.url = '/api/facebook/friend/'
 
+	def test_post(self):
+		response = self.client.post(self.url)
+		self.assertEqual(405, response.status_code)
+
 	def test_get_without_parameters(self):
 		response = self.client.get(self.url, format='json')
 		self.assertEqual(404, response.status_code)
