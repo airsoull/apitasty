@@ -33,7 +33,6 @@ INSTALLED_APPS = (
     'social.apps.django_app.default',
     'storages',
     'tastypie',
-    'bootstrapform',
     'django_extensions',
     'sekizai',
 )
