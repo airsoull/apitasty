@@ -37,10 +37,6 @@ msgstr ""
 msgid "Buscar Amigo"
 msgstr ""
 
-#: tasty/templates/home/compare.html:28
-msgid "Logout"
-msgstr ""
-
 #: tasty/templates/home/home.html:6
 msgid "Comparará amigos que ya hayan usado anteriormente la aplicación"
 msgstr ""
